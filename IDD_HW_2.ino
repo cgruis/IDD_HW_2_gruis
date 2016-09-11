@@ -9,17 +9,20 @@
 SYSTEM_MODE(MANUAL); 
 #endif
 
-const int button1 = D2;     // the number of the pushbutton pin
-const int button2 = D3;
-const int button3 = D4;
-int morseArray[4] = {0, 0, 0, 0};
+// the three pushbuttons are connected to D2, D3, and D4
+const int button1 = D2;  // dot button   
+const int button2 = D3; //dash button
+const int button3 = D4; //submit button
+int morseArray[4] = {0, 0, 0, 0}; // array with morse values from push buttons
 int n = 0;
 char returnChar;
 
-int buttonState1 = 0;         // variable for reading the pushbutton status
+// variables for reading the pushbutton status
+int buttonState1 = 0;         
 int buttonState2 = 0;
 int buttonState3 = 0;
 
+//previous state of buttons
 int previousState1;
 int previousState2;
 int previousState3;
@@ -27,7 +30,7 @@ int previousState3;
 
 void setup() {
   Serial.begin(9600);
-  // initialize the pushbutton pin as an input:
+  // initialize the pushbutton pin as an inputs with the pull down resistors
   pinMode(button1, INPUT_PULLDOWN);
   pinMode(button2, INPUT_PULLDOWN);
   pinMode(button3, INPUT_PULLDOWN);
@@ -63,6 +66,7 @@ void loop() {
   delay(100);
 }
 
+//function to decode morse array
 char morseDecoder( int morse[]){
   char charToPrint;
 
